@@ -219,22 +219,108 @@ try {
       delete: () => Promise.resolve({})
     },
     contactMessage: {
-      findMany: () => Promise.resolve([]),
+      findMany: () => Promise.resolve([
+        {
+          id: '1',
+          name: 'John Smith',
+          email: 'john@example.com',
+          subject: 'Website Inquiry',
+          message: 'Hi, I\'m interested in your web development services. Can we schedule a call?',
+          read: false,
+          createdAt: new Date('2024-03-01'),
+          updatedAt: new Date('2024-03-01')
+        },
+        {
+          id: '2',
+          name: 'Sarah Wilson',
+          email: 'sarah@company.com',
+          subject: 'Project Quote Request',
+          message: 'We need a new e-commerce website for our business. Could you provide a quote?',
+          read: true,
+          createdAt: new Date('2024-02-28'),
+          updatedAt: new Date('2024-02-28')
+        },
+        {
+          id: '3',
+          name: 'Mike Johnson',
+          email: 'mike@startup.io',
+          subject: 'Portfolio Review',
+          message: 'Your portfolio looks amazing! I\'d like to discuss a potential project.',
+          read: false,
+          createdAt: new Date('2024-03-05'),
+          updatedAt: new Date('2024-03-05')
+        }
+      ]),
       findFirst: () => Promise.resolve(null),
       create: (data: any) => Promise.resolve({ id: '1', ...data.data }),
       update: (data: any) => Promise.resolve({ id: '1', ...data.data }),
       delete: () => Promise.resolve({})
     },
     mediaFile: {
-      findMany: () => Promise.resolve([]),
+      findMany: () => Promise.resolve([
+        {
+          id: '1',
+          filename: 'project-screenshot-1.jpg',
+          originalName: 'project-screenshot-1.jpg',
+          mimeType: 'image/jpeg',
+          size: 245760,
+          url: '/uploads/project-screenshot-1.jpg',
+          createdAt: new Date('2024-02-15'),
+          updatedAt: new Date('2024-02-15')
+        },
+        {
+          id: '2',
+          filename: 'portfolio-image-2.png',
+          originalName: 'portfolio-image-2.png',
+          mimeType: 'image/png',
+          size: 512000,
+          url: '/uploads/portfolio-image-2.png',
+          createdAt: new Date('2024-02-20'),
+          updatedAt: new Date('2024-02-20')
+        },
+        {
+          id: '3',
+          filename: 'client-logo.svg',
+          originalName: 'client-logo.svg',
+          mimeType: 'image/svg+xml',
+          size: 15360,
+          url: '/uploads/client-logo.svg',
+          createdAt: new Date('2024-03-01'),
+          updatedAt: new Date('2024-03-01')
+        }
+      ]),
       findFirst: () => Promise.resolve(null),
       create: (data: any) => Promise.resolve({ id: '1', ...data.data }),
       update: (data: any) => Promise.resolve({ id: '1', ...data.data }),
       delete: () => Promise.resolve({})
     },
     analytics: {
-      findMany: () => Promise.resolve([]),
-      findFirst: () => Promise.resolve(null),
+      findMany: () => Promise.resolve([
+        {
+          id: '1',
+          totalViews: 1250,
+          uniqueViews: 890,
+          pageViews: 2100,
+          bounceRate: 0.35,
+          avgSessionDuration: 180,
+          topPages: JSON.stringify(['/', '/projects', '/about', '/contact']),
+          referrers: JSON.stringify(['google.com', 'linkedin.com', 'github.com']),
+          createdAt: new Date('2024-03-01'),
+          updatedAt: new Date('2024-03-01')
+        }
+      ]),
+      findFirst: () => Promise.resolve({
+        id: '1',
+        totalViews: 1250,
+        uniqueViews: 890,
+        pageViews: 2100,
+        bounceRate: 0.35,
+        avgSessionDuration: 180,
+        topPages: JSON.stringify(['/', '/projects', '/about', '/contact']),
+        referrers: JSON.stringify(['google.com', 'linkedin.com', 'github.com']),
+        createdAt: new Date('2024-03-01'),
+        updatedAt: new Date('2024-03-01')
+      }),
       create: (data: any) => Promise.resolve({ id: '1', ...data.data }),
       update: (data: any) => Promise.resolve({ id: '1', ...data.data }),
       delete: () => Promise.resolve({})

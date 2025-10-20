@@ -44,11 +44,18 @@ function AdminDashboard() {
         fetch('/api/media'),
       ])
 
-      const projects = await projectsRes.json()
-      const reviews = await reviewsRes.json()
-      const messages = await messagesRes.json()
-      const analytics = await analyticsRes.json()
-      const mediaFiles = await mediaRes.json()
+      const projectsData = await projectsRes.json()
+      const reviewsData = await reviewsRes.json()
+      const messagesData = await messagesRes.json()
+      const analyticsData = await analyticsRes.json()
+      const mediaData = await mediaRes.json()
+
+      // Handle new API response format {success: true, data: [...]}
+      const projects = projectsData.success ? projectsData.data : projectsData
+      const reviews = reviewsData.success ? reviewsData.data : reviewsData
+      const messages = messagesData.success ? messagesData.data : messagesData
+      const analytics = analyticsData.success ? analyticsData.data : analyticsData
+      const mediaFiles = mediaData.success ? mediaData.data : mediaData
 
       console.log('Dashboard data:', {
         projects: projects.length,
