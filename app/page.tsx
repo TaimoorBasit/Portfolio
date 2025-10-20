@@ -265,14 +265,61 @@ export default function HomePage() {
       <ParticleSystem />
         
       {/* Hero Section - Three Column Layout */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-8">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-8 py-20">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-obsidian via-deep-black to-charcoal" />
         <div className="absolute inset-0 bg-purple-glow opacity-20" />
         
         {/* Main Content Container */}
         <div className="relative z-10 w-full max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center min-h-screen py-20">
+          {/* Tagline Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-center mb-16"
+          >
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-heading leading-tight mb-4"
+              animate={{ 
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
+              whileHover={{ textShadow: "0 0 15px rgba(139, 92, 246, 0.4)" }}
+            >
+              <span className="bg-gradient-to-r from-white via-electric-purple to-white bg-clip-text text-transparent bg-[length:200%_100%]">
+                TURNING IDEAS INTO IMMERSIVE DIGITAL REALITY
+              </span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl font-text text-gray-300"
+              whileHover={{ 
+                scale: 1.05,
+                textShadow: "0 0 15px rgba(139, 92, 246, 0.4)"
+              }}
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+              }}
+              transition={{
+                backgroundPosition: {
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "linear"
+                }
+              }}
+            >
+              <span className="bg-gradient-to-r from-white via-electric-purple to-white bg-clip-text text-transparent bg-[length:200%_100%]">
+                Bridging Creativity and Code
+              </span>
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
             
             {/* Left Column - Personal Introduction */}
             <motion.div
@@ -411,11 +458,13 @@ export default function HomePage() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                        <span className="text-6xl font-bold text-white">
-                          {(aboutData?.name || 'MT').charAt(0)}
-                        </span>
-                      </div>
+                      <Image
+                        src="/taimoor.jpg"
+                        alt="Muhammad Taimoor"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
                     )}
                   </motion.div>
                   
