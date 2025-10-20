@@ -82,33 +82,52 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log('Starting data fetch...')
+        
         const [projectsRes, reviewsRes, aboutRes] = await Promise.all([
           safeFetch('/api/projects'),
           safeFetch('/api/reviews'),
           safeFetch('/api/about')
         ])
         
-        // Handle projects response
+        console.log('API Responses:', { projectsRes, reviewsRes, aboutRes })
+        
+        // Handle projects response - check both new and old format
         if (projectsRes.success && Array.isArray(projectsRes.data)) {
+          console.log('Setting projects from new format:', projectsRes.data)
           setProjects(projectsRes.data)
+        } else if (Array.isArray(projectsRes)) {
+          // Handle old format (direct array)
+          console.log('Setting projects from old format:', projectsRes)
+          setProjects(projectsRes)
         } else {
-          console.warn('Projects API failed:', projectsRes.error)
+          console.warn('Projects API failed:', projectsRes.error || 'Unknown error')
           setProjects([])
         }
         
-        // Handle reviews response
+        // Handle reviews response - check both new and old format
         if (reviewsRes.success && Array.isArray(reviewsRes.data)) {
+          console.log('Setting reviews from new format:', reviewsRes.data)
           setReviews(reviewsRes.data)
+        } else if (Array.isArray(reviewsRes)) {
+          // Handle old format (direct array)
+          console.log('Setting reviews from old format:', reviewsRes)
+          setReviews(reviewsRes)
         } else {
-          console.warn('Reviews API failed:', reviewsRes.error)
+          console.warn('Reviews API failed:', reviewsRes.error || 'Unknown error')
           setReviews([])
         }
         
-        // Handle about response
+        // Handle about response - check both new and old format
         if (aboutRes.success && Array.isArray(aboutRes.data) && aboutRes.data.length > 0) {
+          console.log('Setting about data from new format:', aboutRes.data[0])
           setAboutData(aboutRes.data[0])
+        } else if (Array.isArray(aboutRes) && aboutRes.length > 0) {
+          // Handle old format (direct array)
+          console.log('Setting about data from old format:', aboutRes[0])
+          setAboutData(aboutRes[0])
         } else {
-          console.warn('About API failed:', aboutRes.error)
+          console.warn('About API failed:', aboutRes.error || 'Unknown error')
           setAboutData(null)
         }
       } catch (error) {
@@ -479,18 +498,30 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {safeMap(safeSlice(projects, 0, 6), (project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02, y: -5 }}
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
+            {console.log('Projects data:', projects)}
+            {console.log('Projects length:', projects?.length)}
+            {projects && projects.length > 0 ? (
+              safeMap(safeSlice(projects, 0, 6), (project, index) => {
+                console.log('Rendering project:', project)
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02, y: -5 }}
+                  >
+                    <ProjectCard project={project} />
+                  </motion.div>
+                )
+              })
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-400 text-lg">Loading projects...</p>
+                <p className="text-gray-500 text-sm mt-2">If this persists, check the browser console for errors.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
