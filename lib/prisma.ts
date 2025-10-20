@@ -4,12 +4,17 @@
 let prisma: any
 
 try {
+  // Check if DATABASE_URL is configured
+  if (!process.env.DATABASE_URL || !process.env.DATABASE_URL.startsWith('postgresql://')) {
+    throw new Error('No valid DATABASE_URL configured')
+  }
+  
   // Try to import PrismaClient normally
   const { PrismaClient } = require('@prisma/client')
   prisma = new PrismaClient()
 } catch (error) {
-  // If Prisma client is not generated, create a mock client
-  console.warn('Prisma client not generated, using mock client')
+  // If Prisma client is not generated or no DATABASE_URL, create a mock client
+  console.warn('Using mock Prisma client:', error.message)
   prisma = {
     websiteSettings: {
       findMany: () => Promise.resolve([]),
