@@ -97,15 +97,15 @@ export default function AdminMessages() {
   }
 
   return (
-    <div className="p-8 bg-obsidian text-white min-h-screen">
+    <div className="p-4 sm:p-6 lg:p-8 bg-obsidian text-white min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex justify-between items-center mb-8"
+        className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8"
       >
         <div>
-          <h1 className="text-3xl font-bold text-white font-cinematic">Messages</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white font-cinematic">Messages</h1>
           {unreadCount > 0 && (
             <p className="text-electric-teal mt-2 font-body">
               {unreadCount} unread message{unreadCount !== 1 ? 's' : ''}

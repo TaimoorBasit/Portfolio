@@ -182,15 +182,15 @@ function ReviewsManagement() {
         transition={{ duration: 0.8 }}
       >
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Link href="/admin">
-              <Button variant="outline" size="sm" className="border-electric-purple text-electric-purple hover:bg-electric-purple hover:text-white">
+              <Button variant="outline" size="sm" className="border-electric-purple text-electric-purple hover:bg-electric-purple hover:text-white w-full sm:w-auto">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Dashboard
               </Button>
             </Link>
-            <h1 className="text-4xl font-bold text-white font-cinematic">Manage Reviews</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-cinematic">Manage Reviews</h1>
           </div>
           <Button 
             onClick={() => {
@@ -198,7 +198,7 @@ function ReviewsManagement() {
               setEditingReview(null)
               resetForm()
             }}
-            className="bg-button-gradient text-white border-0 hover:shadow-luxury-purple"
+            className="bg-button-gradient text-white border-0 hover:shadow-luxury-purple w-full sm:w-auto"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add New Review
@@ -219,7 +219,7 @@ function ReviewsManagement() {
         </div>
 
         {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {filteredReviews.map((review, index) => (
             <motion.div
               key={review.id}

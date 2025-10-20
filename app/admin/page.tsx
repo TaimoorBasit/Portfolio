@@ -138,17 +138,17 @@ function AdminDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold text-white font-cinematic">Admin Dashboard</h1>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-cinematic">Admin Dashboard</h1>
           <Link href="/" target="_blank">
-            <Button variant="outline" className="border-electric-teal text-electric-teal hover:bg-electric-teal hover:text-obsidian">
+            <Button variant="outline" className="border-electric-teal text-electric-teal hover:bg-electric-teal hover:text-obsidian w-full sm:w-auto">
               <Eye className="h-4 w-4 mr-2" />
               View Website
             </Button>
           </Link>
         </div>
         
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6 mb-8">
           {statCards.map((card, index) => (
             <motion.div
               key={card.title}
@@ -156,7 +156,7 @@ function AdminDashboard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="glass-card rounded-2xl p-6 hover-glow cursor-pointer"
+              className="glass-card rounded-2xl p-4 lg:p-6 hover-glow cursor-pointer"
               onClick={() => window.location.href = card.href}
             >
               <div className="flex items-center justify-between">
@@ -164,12 +164,12 @@ function AdminDashboard() {
                   <p className="text-sm font-medium text-gray-400 mb-2 font-body">
                     {card.title}
                   </p>
-                  <p className="text-4xl font-bold text-white font-cinematic">
+                  <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-cinematic">
                     {card.value}
                   </p>
                 </div>
-                <div className={`w-16 h-16 ${card.color} rounded-xl flex items-center justify-center neon-glow-teal`}>
-                  <card.icon className="h-8 w-8 text-white" />
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${card.color} rounded-xl flex items-center justify-center neon-glow-teal`}>
+                  <card.icon className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-white" />
                 </div>
               </div>
             </motion.div>
@@ -181,16 +181,16 @@ function AdminDashboard() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="glass-card rounded-2xl p-8"
+          className="glass-card rounded-2xl p-4 lg:p-8"
         >
-          <h2 className="text-2xl font-semibold text-white mb-6 font-cinematic">
+          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6 font-cinematic">
             Quick Actions
           </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                     <Link href="/admin/projects">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-electric-teal/30 rounded-xl hover:bg-electric-teal/10 transition-all duration-300 neon-glow-teal"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-electric-teal/30 rounded-xl hover:bg-electric-teal/10 transition-all duration-300 neon-glow-teal"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-electric-teal to-cyan-glow rounded-lg flex items-center justify-center">
                           <FolderOpen className="h-6 w-6 text-white" />
@@ -204,7 +204,7 @@ function AdminDashboard() {
                     <Link href="/admin/about">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-electric-purple/30 rounded-xl hover:bg-electric-purple/10 transition-all duration-300 neon-glow-purple"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-electric-purple/30 rounded-xl hover:bg-electric-purple/10 transition-all duration-300 neon-glow-purple"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-electric-purple to-vivid-violet rounded-lg flex items-center justify-center">
                           <User className="h-6 w-6 text-white" />
@@ -218,7 +218,7 @@ function AdminDashboard() {
                     <Link href="/admin/reviews">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-violet-glow/30 rounded-xl hover:bg-violet-glow/10 transition-all duration-300 neon-glow-violet"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-violet-glow/30 rounded-xl hover:bg-violet-glow/10 transition-all duration-300 neon-glow-violet"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-violet-glow to-purple-aura rounded-lg flex items-center justify-center">
                           <Star className="h-6 w-6 text-white" />
@@ -232,7 +232,7 @@ function AdminDashboard() {
                     <Link href="/admin/messages">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-magenta-neon/30 rounded-xl hover:bg-magenta-neon/10 transition-all duration-300 neon-glow-magenta"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-magenta-neon/30 rounded-xl hover:bg-magenta-neon/10 transition-all duration-300 neon-glow-magenta"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-magenta-neon to-pink-500 rounded-lg flex items-center justify-center">
                           <MessageSquare className="h-6 w-6 text-white" />
@@ -246,7 +246,7 @@ function AdminDashboard() {
                     <Link href="/admin/analytics">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-electric-teal/30 rounded-xl hover:bg-electric-teal/10 transition-all duration-300 neon-glow-teal"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-electric-teal/30 rounded-xl hover:bg-electric-teal/10 transition-all duration-300 neon-glow-teal"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-electric-teal to-cyan-glow rounded-lg flex items-center justify-center">
                           <BarChart3 className="h-6 w-6 text-white" />
@@ -260,7 +260,7 @@ function AdminDashboard() {
                     <Link href="/admin/media">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-violet-glow/30 rounded-xl hover:bg-violet-glow/10 transition-all duration-300 neon-glow-violet"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-violet-glow/30 rounded-xl hover:bg-violet-glow/10 transition-all duration-300 neon-glow-violet"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-violet-glow to-purple-aura rounded-lg flex items-center justify-center">
                           <Image className="h-6 w-6 text-white" />
@@ -274,7 +274,7 @@ function AdminDashboard() {
                     <Link href="/admin/content">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-electric-teal/30 rounded-xl hover:bg-electric-teal/10 transition-all duration-300 neon-glow-teal"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-electric-teal/30 rounded-xl hover:bg-electric-teal/10 transition-all duration-300 neon-glow-teal"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-electric-teal to-cyan-glow rounded-lg flex items-center justify-center">
                           <FileText className="h-6 w-6 text-white" />
@@ -288,7 +288,7 @@ function AdminDashboard() {
                     <Link href="/admin/change-password">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-4 p-6 border border-magenta-neon/30 rounded-xl hover:bg-magenta-neon/10 transition-all duration-300 neon-glow-magenta"
+                        className="flex items-center gap-3 lg:gap-4 p-4 lg:p-6 border border-magenta-neon/30 rounded-xl hover:bg-magenta-neon/10 transition-all duration-300 neon-glow-magenta"
                       >
                         <div className="w-12 h-12 bg-gradient-to-br from-magenta-neon to-pink-500 rounded-lg flex items-center justify-center">
                           <Settings className="h-6 w-6 text-white" />

@@ -169,24 +169,24 @@ function AboutMeManagement() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-between sticky top-0 bg-obsidian/90 backdrop-blur-md z-10 py-4 border-b border-gray-700"
+        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sticky top-0 bg-obsidian/90 backdrop-blur-md z-10 py-4 border-b border-gray-700"
       >
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
           <Link href="/admin">
-            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white w-full sm:w-auto">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Dashboard
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-white font-cinematic">About Me Management</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white font-cinematic">About Me Management</h1>
             <p className="text-gray-400 font-body">Edit your profile information and image</p>
           </div>
         </div>
         <Button
           onClick={handleSave}
           disabled={saving}
-          className="bg-button-gradient hover:shadow-luxury-purple text-white"
+          className="bg-button-gradient hover:shadow-luxury-purple text-white w-full sm:w-auto"
         >
           <Save className="h-4 w-4 mr-2" />
           {saving ? 'Saving...' : 'Save Changes'}
@@ -198,14 +198,14 @@ function AboutMeManagement() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-gray-800 rounded-xl p-6 border border-gray-700"
+        className="bg-gray-800 rounded-xl p-4 sm:p-6 border border-gray-700"
       >
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
           <div className="w-12 h-12 bg-gradient-to-br from-electric-purple to-vivid-violet rounded-lg flex items-center justify-center">
             <User className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-white font-cinematic">Profile Image</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-white font-cinematic">Profile Image</h2>
             <p className="text-gray-400 font-body">Upload your profile picture</p>
           </div>
         </div>
@@ -252,14 +252,14 @@ function AboutMeManagement() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-gray-800 rounded-xl p-6 border border-gray-700"
+        className="bg-gray-800 rounded-xl p-4 sm:p-6 border border-gray-700"
       >
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
           <div className="w-12 h-12 bg-gradient-to-br from-electric-teal to-cyan-glow rounded-lg flex items-center justify-center">
             <User className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-white font-cinematic">Personal Information</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-white font-cinematic">Personal Information</h2>
             <p className="text-gray-400 font-body">Edit your name, tagline, and description</p>
           </div>
         </div>
@@ -309,11 +309,11 @@ function AboutMeManagement() {
         </div>
       </motion.div>
 
-      {/* Floating Save Button */}
+      {/* Floating Save Button - Hidden on mobile since we have it in header */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="fixed bottom-8 right-8 z-50"
+        className="hidden sm:block fixed bottom-8 right-8 z-50"
       >
         <Button
           onClick={handleSave}

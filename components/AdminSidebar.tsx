@@ -30,8 +30,18 @@ const navigation = [
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ]
 
-export function AdminSidebar() {
+interface AdminSidebarProps {
+  onClose?: () => void
+}
+
+export function AdminSidebar({ onClose }: AdminSidebarProps) {
   const pathname = usePathname()
+
+  const handleLinkClick = () => {
+    if (onClose) {
+      onClose()
+    }
+  }
 
   return (
     <div className="flex flex-col h-full bg-gray-800 border-r border-gray-700">
@@ -51,6 +61,7 @@ export function AdminSidebar() {
             <Link
               key={item.name}
               href={item.href}
+              onClick={handleLinkClick}
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors',
                 isActive

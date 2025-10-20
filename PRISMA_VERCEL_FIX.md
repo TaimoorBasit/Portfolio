@@ -24,3 +24,4 @@ If issues persist, we can:
 
 ## Testing
 The current setup should work with Vercel's standard Next.js deployment process.
+

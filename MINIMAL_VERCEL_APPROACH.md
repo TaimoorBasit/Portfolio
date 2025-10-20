@@ -48,3 +48,4 @@ After deployment:
 
 This approach should deploy successfully without any permission errors.
 The app will work with mock data until you set up the database.
+

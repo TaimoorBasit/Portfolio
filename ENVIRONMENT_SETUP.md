@@ -63,3 +63,4 @@ openssl rand -base64 32
 # Test database connection
 npx prisma db push
 ```
+

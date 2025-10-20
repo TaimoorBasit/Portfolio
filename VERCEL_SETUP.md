@@ -36,3 +36,4 @@ For local development, you can use:
   - Neon (Free tier available)
   - Railway (Free tier available)
   - PlanetScale (Free tier available)
+

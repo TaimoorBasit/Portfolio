@@ -42,3 +42,4 @@ If you still get the routes-manifest.json error:
 1. Make sure you're not using a custom build command
 2. Ensure Next.js is properly detected by Vercel
 3. Check that the build script includes `prisma generate`
+
