@@ -91,13 +91,18 @@ export default function HomePage() {
         const reviewsData = await reviewsRes.json()
         const aboutData = await aboutRes.json()
         
-        setProjects(projectsData)
-        setReviews(reviewsData)
-        if (aboutData.length > 0) {
+        // Ensure data is an array before setting state
+        setProjects(Array.isArray(projectsData) ? projectsData : [])
+        setReviews(Array.isArray(reviewsData) ? reviewsData : [])
+        if (Array.isArray(aboutData) && aboutData.length > 0) {
           setAboutData(aboutData[0])
         }
       } catch (error) {
         console.error('Error fetching data:', error)
+        // Set empty arrays as fallback
+        setProjects([])
+        setReviews([])
+        setAboutData(null)
       }
     }
 
@@ -460,7 +465,7 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.slice(0, 6).map((project, index) => (
+            {(projects || []).slice(0, 6).map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -495,7 +500,7 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.slice(0, 3).map((review, index) => (
+            {(reviews || []).slice(0, 3).map((review, index) => (
               <motion.div
                 key={review.id}
                 initial={{ opacity: 0, y: 30 }}
