@@ -1,0 +1,34 @@
+{
+  "assistantName": "Taimoor Assistant",
+  "accentColor": "#8b5cf6",
+  "bookingLink": "https://calendly.com/muhammadtaimoor",
+  "contactEmail": "hello@muhammadtaimoor.com",
+  "autoShareContact": false,
+  "rateLimitPerMinute": 10,
+  "projects": [
+    {
+      "id": "portfolio-website",
+      "title": "Portfolio Website",
+      "description": "Modern, responsive portfolio website with dark theme and animations",
+      "technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      "link": "https://muhammadtaimoor.com",
+      "featured": true
+    },
+    {
+      "id": "ecommerce-platform",
+      "title": "E-commerce Platform",
+      "description": "Full-stack e-commerce solution with payment integration",
+      "technologies": ["React", "Node.js", "PostgreSQL", "Stripe"],
+      "link": "https://demo-ecommerce.com",
+      "featured": true
+    },
+    {
+      "id": "task-management",
+      "title": "Task Management App",
+      "description": "Collaborative task management with real-time updates",
+      "technologies": ["React", "Socket.io", "MongoDB", "Express"],
+      "link": "https://demo-tasks.com",
+      "featured": false
+    }
+  ]
+}
