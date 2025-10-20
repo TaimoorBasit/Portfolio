@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Code, Palette, Zap, Star, Mail, Phone, MapPin, ExternalLink, Github } from 'lucide-react'
+import { ArrowRight, Code, Palette, Zap, Star, Mail, Phone, MapPin, ExternalLink, Github, ArrowDown, User } from 'lucide-react'
 import { ProjectCard } from '@/components/ProjectCard'
 import { ReviewCard } from '@/components/ReviewCard'
 import { ContactForm } from '@/components/ContactForm'
@@ -255,128 +255,70 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-obsidian text-white overflow-x-hidden">
-      {/* Luxury Background with Tech Grid */}
-      <div className="fixed inset-0 bg-luxury-gradient" />
-      <div className="fixed inset-0 bg-purple-glow opacity-50" />
-      <div className="fixed inset-0 bg-tech-grid opacity-20" style={{ backgroundSize: '50px 50px' }} />
-      
-      {/* Particle System */}
-      <ParticleSystem />
-        
-      {/* Hero Section - Full Screen Cinematic */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
-        {/* Dynamic Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-obsidian via-deep-black to-charcoal" />
-        <div className="absolute inset-0 bg-purple-glow opacity-30" />
-        
-        {/* Content */}
-        <div className="relative z-10 text-center max-w-5xl mx-auto">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Modern Hero Section */}
+      <section className="relative min-h-screen bg-black text-white overflow-hidden px-4 md:px-8">
+        {/* Header Navigation */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
-            className="space-y-6"
-          >
-            {/* Main Title */}
-            <motion.div
-              className="relative inline-block"
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.2, type: "spring", stiffness: 100 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.h1 
-                className="text-hero font-heading font-black bg-button-gradient bg-clip-text text-transparent leading-tight"
-                animate={{ 
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{ 
-                  duration: 3, 
-                  repeat: Infinity, 
-                  ease: "linear" 
-                }}
-                whileHover={{ textShadow: "0 0 15px rgba(139, 92, 246, 0.4)" }}
-              >
-                TURNING IDEAS INTO IMMERSIVE DIGITAL REALITY
-              </motion.h1>
-              <motion.div 
-                className="absolute -inset-1 bg-button-gradient opacity-10 blur-sm rounded-lg"
-                animate={{ 
-                  opacity: [0.1, 0.2, 0.1],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
-              />
-            </motion.div>
+          transition={{ duration: 0.8 }}
+          className="absolute top-0 left-0 right-0 z-20 pt-8"
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
+              <span className="text-2xl font-bold text-white">mt.</span>
+              <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+            </div>
 
-            {/* Subtitle */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="space-y-3"
-            >
-              <motion.p 
-                className="text-subtitle font-text text-light-gray"
-                whileHover={{ 
-                  scale: 1.05,
-                  textShadow: "0 0 15px rgba(139, 92, 246, 0.4)"
-                }}
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                }}
-                transition={{
-                  backgroundPosition: {
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }
-                }}
-              >
-                <span className="bg-gradient-to-r from-white via-electric-purple to-white bg-clip-text text-transparent bg-[length:200%_100%]">
-                  Bridging Creativity and Code
-                </span>
-              </motion.p>
-            </motion.div>
+            {/* Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <div className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors cursor-pointer">
+                <span>jump to</span>
+                <ArrowDown className="h-4 w-4" />
+              </div>
+              <Link href="#skills" className="text-gray-300 hover:text-white transition-colors">skills</Link>
+              <Link href="#projects" className="text-gray-300 hover:text-white transition-colors">work</Link>
+              <Link href="#reviews" className="text-gray-300 hover:text-white transition-colors">testimonials</Link>
+            </nav>
 
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button 
-                  size="lg" 
-                  className="px-8 py-3 text-base font-semibold rounded-full bg-button-gradient text-white border-0 shadow-button-luxury hover:shadow-luxury-purple transition-all duration-300"
-                  onClick={() => {
-                    const projectsSection = document.getElementById('projects')
-                    if (projectsSection) {
-                      projectsSection.scrollIntoView({ behavior: 'smooth' })
-                    }
-                  }}
-                >
-                  VIEW PROJECTS →
+            {/* Resume Button */}
+            <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded-none">
+              Download My Resume
                 </Button>
+          </div>
               </motion.div>
               
+        {/* Main Content */}
+        <div className="relative z-10 min-h-screen flex items-center">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            
+            {/* Left Section - Personal Introduction */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-6"
+            >
+              <div className="space-y-2">
+                <p className="text-gray-400 text-sm font-light">hey, i am</p>
+                <div className="space-y-1">
+                  <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                    {aboutData?.name?.split(' ')[0] || 'Muhammad'}
+                  </h1>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-0.5 bg-yellow-400"></div>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                      {aboutData?.name?.split(' ')[1] || 'Taimoor'}
+                    </h1>
+                  </div>
+                </div>
+              </div>
+
                 <Button 
-                  size="lg" 
                   variant="outline"
-                  className="px-8 py-3 text-base font-semibold rounded-full border-2 border-electric-purple text-white bg-transparent hover:bg-electric-purple/10 hover:shadow-luxury-purple transition-all duration-300"
+                className="border-white text-white hover:bg-white hover:text-black transition-all duration-300 rounded-none px-8 py-3"
                   onClick={() => {
                     const contactSection = document.getElementById('contact')
                     if (contactSection) {
@@ -384,28 +326,91 @@ export default function HomePage() {
                     }
                   }}
                 >
-                  GET IN TOUCH
+                contact me
                 </Button>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
 
-        {/* Scroll Indicator */}
+              <div className="space-y-3">
+                <p className="text-gray-400 text-sm">my socials</p>
+                <div className="flex items-center space-x-4">
+                  <div className="w-6 h-6 border border-gray-400 rounded-full flex items-center justify-center hover:border-white transition-colors cursor-pointer">
+                    <span className="text-xs">in</span>
+        </div>
+                  <div className="w-px h-4 bg-gray-400"></div>
+                  <div className="w-6 h-6 border border-gray-400 rounded-full flex items-center justify-center hover:border-white transition-colors cursor-pointer">
+                    <span className="text-xs">f</span>
+                  </div>
+                  <div className="w-px h-4 bg-gray-400"></div>
+                  <div className="w-6 h-6 border border-gray-400 rounded-full flex items-center justify-center hover:border-white transition-colors cursor-pointer">
+                    <Github className="h-3 w-3" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Center Section - Profile Image */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-electric-purple rounded-full flex justify-center">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-electric-purple rounded-full mt-2"
-            />
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex justify-center"
+            >
+              <div className="relative">
+                <div className="w-64 h-64 md:w-80 md:h-80 bg-yellow-400 rounded-full flex items-center justify-center overflow-hidden">
+                  {aboutData?.profileImage ? (
+                    <Image
+                      src={aboutData.profileImage}
+                      alt={aboutData.name || 'Profile'}
+                      width={320}
+                      height={320}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center">
+                      <User className="h-24 w-24 text-gray-400" />
+                    </div>
+                  )}
+                </div>
           </div>
         </motion.div>
+
+            {/* Right Section - Professional Details */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="space-y-6"
+            >
+              <div className="space-y-2">
+                <p className="text-gray-400 text-sm font-light">FULLSTACK</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-white">
+                  Web Developer
+                </h2>
+              </div>
+
+              <p className="text-gray-300 leading-relaxed">
+                {aboutData?.description || 'I specialize in Shopify e-commerce stores, WordPress landing pages, and Next.js applications. From Dellnux\'s complete Shopify store to SevenKoncepts\' Next.js website, I deliver results.'}
+              </p>
+
+              <div className="flex items-center space-x-4 text-sm">
+                <Link href="#skills" className="text-gray-300 hover:text-white transition-colors">my Skills</Link>
+                <div className="w-px h-4 bg-gray-400"></div>
+                <Link href="#experience" className="text-gray-300 hover:text-white transition-colors">my Experience</Link>
+                <div className="w-px h-4 bg-gray-400"></div>
+                <Link href="#art" className="text-gray-300 hover:text-white transition-colors">my Art</Link>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-gray-400 text-sm">my life motto is -</p>
+                <div className="flex items-start space-x-3">
+                  <div className="w-1 h-8 bg-yellow-400 mt-1"></div>
+                  <p className="text-white italic text-lg">
+                    "Get a cup of coffee and get my work done"
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Technology / Feature Section */}
