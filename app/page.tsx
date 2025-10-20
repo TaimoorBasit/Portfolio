@@ -15,6 +15,7 @@ import { OptimizedAuraLayer as AuraLayer } from '@/components/OptimizedAuraLayer
 import { OptimizedMagneticCursor as MagneticCursor } from '@/components/OptimizedMagneticCursor'
 import { Footer } from '@/components/Footer'
 import { SimpleAIAssistant } from '@/components/SimpleAIAssistant'
+import { safeFetch, safeSlice, safeMap } from '@/lib/apiClient'
 
 interface Project {
   id: string
@@ -82,24 +83,37 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         const [projectsRes, reviewsRes, aboutRes] = await Promise.all([
-          fetch('/api/projects'),
-          fetch('/api/reviews'),
-          fetch('/api/about')
+          safeFetch('/api/projects'),
+          safeFetch('/api/reviews'),
+          safeFetch('/api/about')
         ])
         
-        const projectsData = await projectsRes.json()
-        const reviewsData = await reviewsRes.json()
-        const aboutData = await aboutRes.json()
+        // Handle projects response
+        if (projectsRes.success && Array.isArray(projectsRes.data)) {
+          setProjects(projectsRes.data)
+        } else {
+          console.warn('Projects API failed:', projectsRes.error)
+          setProjects([])
+        }
         
-        // Ensure data is an array before setting state
-        setProjects(Array.isArray(projectsData) ? projectsData : [])
-        setReviews(Array.isArray(reviewsData) ? reviewsData : [])
-        if (Array.isArray(aboutData) && aboutData.length > 0) {
-          setAboutData(aboutData[0])
+        // Handle reviews response
+        if (reviewsRes.success && Array.isArray(reviewsRes.data)) {
+          setReviews(reviewsRes.data)
+        } else {
+          console.warn('Reviews API failed:', reviewsRes.error)
+          setReviews([])
+        }
+        
+        // Handle about response
+        if (aboutRes.success && Array.isArray(aboutRes.data) && aboutRes.data.length > 0) {
+          setAboutData(aboutRes.data[0])
+        } else {
+          console.warn('About API failed:', aboutRes.error)
+          setAboutData(null)
         }
       } catch (error) {
         console.error('Error fetching data:', error)
-        // Set empty arrays as fallback
+        // Set fallback data
         setProjects([])
         setReviews([])
         setAboutData(null)
@@ -465,7 +479,7 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {(projects || []).slice(0, 6).map((project, index) => (
+            {safeMap(safeSlice(projects, 0, 6), (project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -500,7 +514,7 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {(reviews || []).slice(0, 3).map((review, index) => (
+            {safeMap(safeSlice(reviews, 0, 3), (review, index) => (
               <motion.div
                 key={review.id}
                 initial={{ opacity: 0, y: 30 }}
