@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/neon-db'
+import { db } from '@/lib/neon'
 import { safeApiCall } from '@/lib/apiResponse'
 
 export async function GET() {
   return safeApiCall(
     async () => {
       const aboutData = await db.getAboutMe()
-      return [aboutData] // Return as array to match expected format
+      return aboutData ? [aboutData] : []
     },
     'About API'
   )

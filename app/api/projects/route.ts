@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/neon-db'
+import { db } from '@/lib/neon'
 import { safeApiCall } from '@/lib/apiResponse'
 
 export async function GET() {
