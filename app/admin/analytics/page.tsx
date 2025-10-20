@@ -101,7 +101,7 @@ function AdminAnalyticsContent() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-400 mb-2 font-body">Total Views</p>
-                <p className="text-3xl font-bold text-white font-cinematic">{analytics.totalViews}</p>
+                <p className="text-3xl font-bold text-white font-cinematic">{analytics?.totalViews || 0}</p>
               </div>
               <div className="w-12 h-12 bg-gradient-to-br from-electric-teal to-cyan-glow rounded-lg flex items-center justify-center">
                 <Eye className="h-6 w-6 text-white" />
@@ -118,7 +118,7 @@ function AdminAnalyticsContent() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-400 mb-2 font-body">Unique Views</p>
-                <p className="text-3xl font-bold text-white font-cinematic">{analytics.uniqueViews}</p>
+                <p className="text-3xl font-bold text-white font-cinematic">{analytics?.uniqueViews || 0}</p>
               </div>
               <div className="w-12 h-12 bg-gradient-to-br from-violet-glow to-purple-aura rounded-lg flex items-center justify-center">
                 <Users className="h-6 w-6 text-white" />
@@ -154,7 +154,7 @@ function AdminAnalyticsContent() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-400 mb-2 font-body">Pages Tracked</p>
-                <p className="text-3xl font-bold text-white font-cinematic">{analytics.topPages.length}</p>
+                <p className="text-3xl font-bold text-white font-cinematic">{analytics?.topPages?.length || 0}</p>
               </div>
               <div className="w-12 h-12 bg-gradient-to-br from-electric-teal to-cyan-glow rounded-lg flex items-center justify-center">
                 <Globe className="h-6 w-6 text-white" />
@@ -178,13 +178,13 @@ function AdminAnalyticsContent() {
               <h2 className="text-xl font-semibold text-white font-cinematic">Top Pages</h2>
             </div>
 
-            {analytics.topPages.length === 0 ? (
+            {analytics?.topPages?.length === 0 ? (
               <div className="text-center py-8">
                 <p className="text-gray-400">No page views tracked yet</p>
               </div>
             ) : (
               <div className="space-y-4">
-                {analytics.topPages.map((page, index) => (
+                {analytics?.topPages?.map((page, index) => (
                   <div key={page.page} className="flex items-center justify-between p-3 bg-charcoal rounded-lg">
                     <div className="flex items-center gap-3">
                       <span className="text-sm font-medium text-gray-400">#{index + 1}</span>
@@ -214,13 +214,13 @@ function AdminAnalyticsContent() {
               <h2 className="text-xl font-semibold text-white font-cinematic">Recent Activity</h2>
             </div>
 
-            {analytics.dailyStats.length === 0 ? (
+            {analytics?.dailyStats?.length === 0 ? (
               <div className="text-center py-8">
                 <p className="text-gray-400">No recent activity</p>
               </div>
             ) : (
               <div className="space-y-3">
-                {analytics.dailyStats.slice(0, 7).map((stat, index) => (
+                {analytics?.dailyStats?.slice(0, 7).map((stat, index) => (
                   <div key={stat.date} className="flex items-center justify-between p-3 bg-charcoal rounded-lg">
                     <div className="flex items-center gap-3">
                       <span className="text-sm text-gray-400">{stat.date}</span>
