@@ -136,7 +136,7 @@ function AdminAnalyticsContent() {
               <div>
                 <p className="text-sm font-medium text-gray-400 mb-2 font-body">Top Page</p>
                 <p className="text-lg font-bold text-white font-cinematic truncate">
-                  {analytics.topPages[0]?.page || 'N/A'}
+                  {analytics.topPages && analytics.topPages.length > 0 ? analytics.topPages[0].page : 'N/A'}
                 </p>
               </div>
               <div className="w-12 h-12 bg-gradient-to-br from-magenta-neon to-pink-500 rounded-lg flex items-center justify-center">
