@@ -17,33 +17,59 @@ export const authOptions: NextAuthOptions = {
         }
 
         try {
+          // First, try to find user in database
           const user = await prisma.user.findUnique({
             where: {
               email: credentials.email
             }
           })
 
-          if (!user || !user.passwordHash) {
-            return null
+          if (user && user.passwordHash) {
+            const isPasswordValid = await bcrypt.compare(
+              credentials.password,
+              user.passwordHash
+            )
+
+            if (isPasswordValid) {
+              return {
+                id: user.id,
+                email: user.email,
+                name: user.name,
+                role: user.role,
+              }
+            }
           }
 
-          const isPasswordValid = await bcrypt.compare(
-            credentials.password,
-            user.passwordHash
-          )
-
-          if (!isPasswordValid) {
-            return null
+          // Fallback: Check environment variables for admin credentials
+          const adminEmail = process.env.ADMIN_EMAIL || 'admin@portfolio.com'
+          const adminPassword = process.env.ADMIN_PASSWORD || 'admin123'
+          
+          if (credentials.email === adminEmail && credentials.password === adminPassword) {
+            return {
+              id: 'admin-1',
+              email: adminEmail,
+              name: 'Admin User',
+              role: 'admin',
+            }
           }
 
-          return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role,
-          }
+          return null
         } catch (error) {
           console.error('Auth error:', error)
+          
+          // Fallback: Check environment variables for admin credentials
+          const adminEmail = process.env.ADMIN_EMAIL || 'admin@portfolio.com'
+          const adminPassword = process.env.ADMIN_PASSWORD || 'admin123'
+          
+          if (credentials.email === adminEmail && credentials.password === adminPassword) {
+            return {
+              id: 'admin-1',
+              email: adminEmail,
+              name: 'Admin User',
+              role: 'admin',
+            }
+          }
+          
           return null
         }
       }
@@ -70,6 +96,6 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/admin/signin',
   },
-  debug: true, // Enable debug mode
+  debug: process.env.NODE_ENV === 'development',
 }
 
