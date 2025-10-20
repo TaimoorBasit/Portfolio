@@ -50,12 +50,12 @@ export async function GET() {
     return NextResponse.json({
       totalViews: totalViews._sum.views || 0,
       uniqueViews: uniqueViews._sum.uniqueViews || 0,
-      topPages: topPages.map(page => ({
+      topPages: topPages.map((page: any) => ({
         page: page.page,
         views: page._sum.views || 0,
         uniqueViews: page._sum.uniqueViews || 0,
       })),
-      dailyStats: dailyStats.map(stat => ({
+      dailyStats: dailyStats.map((stat: any) => ({
         date: stat.date.toISOString().split('T')[0],
         views: stat._sum.views || 0,
         uniqueViews: stat._sum.uniqueViews || 0,

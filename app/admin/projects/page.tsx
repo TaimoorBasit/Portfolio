@@ -141,25 +141,25 @@ function ProjectsManagement() {
     try {
       technologies = typeof project.technologies === 'string' ? 
         JSON.parse(project.technologies).join(', ') : 
-        Array.isArray(project.technologies) ? project.technologies.join(', ') : project.technologies || ''
+        Array.isArray(project.technologies) ? project.technologies.join(', ') : String(project.technologies || '')
     } catch (e) {
-      technologies = project.technologies || ''
+      technologies = String(project.technologies || '')
     }
     
     try {
       tags = typeof project.tags === 'string' ? 
         JSON.parse(project.tags).join(', ') : 
-        Array.isArray(project.tags) ? project.tags.join(', ') : project.tags || ''
+        Array.isArray(project.tags) ? project.tags.join(', ') : String(project.tags || '')
     } catch (e) {
-      tags = project.tags || ''
+      tags = String(project.tags || '')
     }
     
     try {
       techStack = typeof project.techStack === 'string' ? 
         JSON.parse(project.techStack).join(', ') : 
-        Array.isArray(project.techStack) ? project.techStack.join(', ') : project.techStack || ''
+        Array.isArray(project.techStack) ? project.techStack.join(', ') : String(project.techStack || '')
     } catch (e) {
-      techStack = project.techStack || ''
+      techStack = String(project.techStack || '')
     }
     
     setFormData({
